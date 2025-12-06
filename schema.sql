@@ -3,3 +3,5 @@ CREATE TABLE authors (
   name text    NOT NULL,
   bio  text
 );
+
+
