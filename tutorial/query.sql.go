@@ -7,63 +7,45 @@ package tutorial
 
 import (
 	"context"
-	"database/sql"
 )
 
-const createAuthor = `-- name: CreateAuthor :execresult
-INSERT INTO authors (
-  name, bio
-) VALUES (
-  ?, ?
-)
+const deleteCutHistory = `-- name: DeleteCutHistory :exec
+DELETE FROM cutHistory
+WHERE lists_id = ?
 `
 
-type CreateAuthorParams struct {
-	Name string
-	Bio  sql.NullString
-}
-
-func (q *Queries) CreateAuthor(ctx context.Context, arg CreateAuthorParams) (sql.Result, error) {
-	return q.db.ExecContext(ctx, createAuthor, arg.Name, arg.Bio)
-}
-
-const deleteAuthor = `-- name: DeleteAuthor :exec
-DELETE FROM authors
-WHERE id = ?
-`
-
-func (q *Queries) DeleteAuthor(ctx context.Context, id int64) error {
-	_, err := q.db.ExecContext(ctx, deleteAuthor, id)
+func (q *Queries) DeleteCutHistory(ctx context.Context, listsID int64) error {
+	_, err := q.db.ExecContext(ctx, deleteCutHistory, listsID)
 	return err
 }
 
-const getAuthor = `-- name: GetAuthor :one
-SELECT id, name, bio FROM authors
-WHERE id = ? LIMIT 1
+const deleteCutList = `-- name: DeleteCutList :exec
+DELETE FROM cutLists
+WHERE id = ?
 `
 
-func (q *Queries) GetAuthor(ctx context.Context, id int64) (Author, error) {
-	row := q.db.QueryRowContext(ctx, getAuthor, id)
-	var i Author
-	err := row.Scan(&i.ID, &i.Name, &i.Bio)
-	return i, err
+func (q *Queries) DeleteCutList(ctx context.Context, id int64) error {
+	_, err := q.db.ExecContext(ctx, deleteCutList, id)
+	return err
 }
 
-const listAuthors = `-- name: ListAuthors :many
-SELECT id, name, bio FROM authors
-ORDER BY name
+const getCutHistory = `-- name: GetCutHistory :many
+SELECT id, lists_id, lists_updated_at
+FROM cutHistory
+WHERE lists_id = ?
+ORDER BY lists_updated_at DESC
 `
 
-func (q *Queries) ListAuthors(ctx context.Context) ([]Author, error) {
-	rows, err := q.db.QueryContext(ctx, listAuthors)
+func (q *Queries) GetCutHistory(ctx context.Context, listsID int64) ([]Cuthistory, error) {
+	rows, err := q.db.QueryContext(ctx, getCutHistory, listsID)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	var items []Author
+	var items []Cuthistory
 	for rows.Next() {
-		var i Author
-		if err := rows.Scan(&i.ID, &i.Name, &i.Bio); err != nil {
+		var i Cuthistory
+		if err := rows.Scan(&i.ID, &i.ListsID, &i.ListsUpdatedAt); err != nil {
 			return nil, err
 		}
 		items = append(items, i)
@@ -75,4 +57,140 @@ func (q *Queries) ListAuthors(ctx context.Context) ([]Author, error) {
 		return nil, err
 	}
 	return items, nil
+}
+
+const getCutLists = `-- name: GetCutLists :many
+SELECT id, user_id, name, color, count, ` + "`" + `limit` + "`" + `, created_at, updated_at
+FROM cutLists
+WHERE user_id = ?
+`
+
+func (q *Queries) GetCutLists(ctx context.Context, userID int64) ([]Cutlist, error) {
+	rows, err := q.db.QueryContext(ctx, getCutLists, userID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Cutlist
+	for rows.Next() {
+		var i Cutlist
+		if err := rows.Scan(
+			&i.ID,
+			&i.UserID,
+			&i.Name,
+			&i.Color,
+			&i.Count,
+			&i.Limit,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const getEventHistory = `-- name: GetEventHistory :many
+SELECT id, lists_id, lists_updated_at
+FROM eventHistory
+WHERE lists_id = ?
+ORDER BY lists_updated_at DESC
+`
+
+func (q *Queries) GetEventHistory(ctx context.Context, listsID int64) ([]Eventhistory, error) {
+	rows, err := q.db.QueryContext(ctx, getEventHistory, listsID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Eventhistory
+	for rows.Next() {
+		var i Eventhistory
+		if err := rows.Scan(&i.ID, &i.ListsID, &i.ListsUpdatedAt); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const getEventLists = `-- name: GetEventLists :many
+SELECT id, user_id, name, color, count, ` + "`" + `limit` + "`" + `, created_at, updated_at
+FROM eventLists
+WHERE user_id = ?
+`
+
+func (q *Queries) GetEventLists(ctx context.Context, userID int64) ([]Eventlist, error) {
+	rows, err := q.db.QueryContext(ctx, getEventLists, userID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Eventlist
+	for rows.Next() {
+		var i Eventlist
+		if err := rows.Scan(
+			&i.ID,
+			&i.UserID,
+			&i.Name,
+			&i.Color,
+			&i.Count,
+			&i.Limit,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const getUser = `-- name: GetUser :one
+SELECT id
+FROM users
+WHERE uuid = ?
+LIMIT 1
+`
+
+func (q *Queries) GetUser(ctx context.Context, uuid string) (int64, error) {
+	row := q.db.QueryRowContext(ctx, getUser, uuid)
+	var id int64
+	err := row.Scan(&id)
+	return id, err
+}
+
+const updateCutListCount = `-- name: UpdateCutListCount :exec
+UPDATE cutLists
+SET count = ?
+WHERE id = ?
+`
+
+type UpdateCutListCountParams struct {
+	Count int32
+	ID    int64
+}
+
+func (q *Queries) UpdateCutListCount(ctx context.Context, arg UpdateCutListCountParams) error {
+	_, err := q.db.ExecContext(ctx, updateCutListCount, arg.Count, arg.ID)
+	return err
 }

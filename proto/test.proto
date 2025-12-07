@@ -1,0 +1,16 @@
+syntax = "proto3";
+package tutorial;
+
+option go_package = "./pd";
+
+
+// option go_package = "./pd";
+
+// import "google/protobuf/timestamp.proto";
+// import "date.proto"; 
+
+message authors {
+    int32 id = 1;
+    string name = 2;
+    string bio = 3;
+}

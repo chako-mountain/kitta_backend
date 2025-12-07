@@ -1,37 +1,10 @@
-// package main
-
-// import (
-// 	"database/sql"
-// 	"fmt"
-
-// 	"github.com/gin-gonic/gin"
-// 	// "fmt"
-// 	// "time"
-// )
-
-// func main() {
-// 	router := gin.Default()
-
-// 	db, err := sql.Open("mysql", "docker:docker@tcp(localhost:3305)/test_database?parseTime=true&loc=Asia%2FTokyo")
-// 	if err != nil {
-// 		fmt.Print(err)
-// 	}
-// 	defer db.Close()
-
-// 	router.GET("/ping", func(c *gin.Context) {
-// 		c.JSON(200, gin.H{
-// 			"message": "pong",
-// 		})
-// 	})
-// 	router.Run()
-// }
-
 package main
 
 import (
 	"context"
 	"database/sql"
 	"log"
+	"net/http"
 	"reflect"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -39,10 +12,14 @@ import (
 	// "/tutorial"
 	// "github.com/username/kitta_backend/tutorial"
 	"kitta_backend/tutorial"
+
+	"github.com/gin-gonic/gin"
 )
 
 func run() error {
 	ctx := context.Background()
+
+	r := gin.Default()
 
 	// db, err := sql.Open("mysql", "docker:docker@/test_database?parseTime=true")
 	db, err := sql.Open("mysql", "docker:docker@tcp(localhost:3305)/test_database?parseTime=true&loc=Asia%2FTokyo")
@@ -82,7 +59,16 @@ func run() error {
 
 	// prints true
 	log.Println(reflect.DeepEqual(insertedAuthorID, fetchedAuthor.ID))
-	return nil
+	// return nil
+
+	r.GET("/ping", func(c *gin.Context) {
+		// Return JSON response
+		c.JSON(http.StatusOK, gin.H{
+			"message": "pong",
+		})
+	})
+
+	return r.Run()
 }
 
 func main() {

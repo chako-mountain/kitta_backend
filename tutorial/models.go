@@ -6,10 +6,44 @@ package tutorial
 
 import (
 	"database/sql"
+	"time"
 )
 
-type Author struct {
+type Cuthistory struct {
+	ID             int64
+	ListsID        int64
+	ListsUpdatedAt time.Time
+}
+
+type Cutlist struct {
+	ID        int64
+	UserID    int64
+	Name      string
+	Color     string
+	Count     int32
+	Limit     int32
+	CreatedAt sql.NullTime
+	UpdatedAt sql.NullTime
+}
+
+type Eventhistory struct {
+	ID             int64
+	ListsID        int64
+	ListsUpdatedAt time.Time
+}
+
+type Eventlist struct {
+	ID        int64
+	UserID    int64
+	Name      string
+	Color     string
+	Count     int32
+	Limit     int32
+	CreatedAt sql.NullTime
+	UpdatedAt sql.NullTime
+}
+
+type User struct {
 	ID   int64
-	Name string
-	Bio  sql.NullString
+	Uuid string
 }
