@@ -20,7 +20,7 @@
 #   db-vol:
 
 
-version: '3'
+# version: '3'
 
 services:
   # MySQL

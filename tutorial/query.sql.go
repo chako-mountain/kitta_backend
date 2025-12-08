@@ -9,6 +9,16 @@ import (
 	"context"
 )
 
+const createUser = `-- name: CreateUser :exec
+INSERT INTO users (uuid)
+VALUES (?)
+`
+
+func (q *Queries) CreateUser(ctx context.Context, uuid string) error {
+	_, err := q.db.ExecContext(ctx, createUser, uuid)
+	return err
+}
+
 const deleteCutHistory = `-- name: DeleteCutHistory :exec
 DELETE FROM cutHistory
 WHERE lists_id = ?
@@ -27,6 +37,34 @@ WHERE id = ?
 func (q *Queries) DeleteCutList(ctx context.Context, id int64) error {
 	_, err := q.db.ExecContext(ctx, deleteCutList, id)
 	return err
+}
+
+const getAllUsers = `-- name: GetAllUsers :many
+SELECT id, uuid
+FROM users
+`
+
+func (q *Queries) GetAllUsers(ctx context.Context) ([]User, error) {
+	rows, err := q.db.QueryContext(ctx, getAllUsers)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []User
+	for rows.Next() {
+		var i User
+		if err := rows.Scan(&i.ID, &i.Uuid); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
 }
 
 const getCutHistory = `-- name: GetCutHistory :many

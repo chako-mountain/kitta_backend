@@ -1,16 +1,74 @@
 syntax = "proto3";
 package tutorial;
 
-option go_package = "./pd";
+option go_package = "./pkg";
 
 
-// option go_package = "./pd";
+message req_getUserByUuid {
+    string uuid = 1;
+}
 
-// import "google/protobuf/timestamp.proto";
-// import "date.proto"; 
+message res_getUserByUuid {
+    int64 id = 1;
+}
 
-message authors {
-    int32 id = 1;
+message req_getCutList {
+    int64 user_id = 1;
+}
+
+message res_getCutList {
+    int64 id = 1;
     string name = 2;
-    string bio = 3;
+    string color = 3;
+    int64 count = 4;
+    int64 limit = 5;
+    string created_at = 6;
+    string updated_at = 7;  
+}
+
+message req_getCutHistory {
+    int64 user_id = 1;
+}
+
+message res_getCutHistory {
+    int64 id = 1;
+    string updated_at = 2;
+}
+
+
+service CutListService {
+    rpc GetUserByUuid (req_getUserByUuid) returns (res_getUserByUuid);
+    rpc GetCutList (req_getCutList) returns (stream res_getCutList);
+    rpc GetHistory (req_getCutHistory) returns (stream res_getCutHistory);
+}
+
+
+
+message req_getEventList {
+    int64 user_id = 1;
+}
+
+message res_getEventList {
+    int64 id = 1;
+    string name = 2;
+    string color = 3;
+    int64 count = 4;
+    int64 limit = 5;
+    string created_at = 6;
+    string updated_at = 7;  
+}
+
+message req_getEventHistory {
+    int64 user_id = 1;
+}
+
+message res_getEventHistory {
+    int64 id = 1;
+    string updated_at = 2;
+}
+
+service EventListService {
+    rpc GetUserByUuid (req_getUserByUuid) returns (res_getUserByUuid);
+    rpc GetEventList (req_getEventList) returns (stream res_getEventList);
+    rpc GetHistory (req_getEventHistory) returns (stream res_getEventHistory);
 }

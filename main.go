@@ -1,11 +1,15 @@
 package main
 
 import (
-	"context"
 	"database/sql"
+	"fmt"
 	"log"
-	"net/http"
-	"reflect"
+	"net"
+
+	// "log"
+
+	// "reflect"
+	"context"
 
 	_ "github.com/go-sql-driver/mysql"
 
@@ -13,68 +17,57 @@ import (
 	// "github.com/username/kitta_backend/tutorial"
 	"kitta_backend/tutorial"
 
-	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
+	"google.golang.org/grpc"
 )
 
-func run() error {
+func main() {
+	// userID := int64(1)
+
 	ctx := context.Background()
 
-	r := gin.Default()
+	// r := gin.Default()
 
 	// db, err := sql.Open("mysql", "docker:docker@/test_database?parseTime=true")
 	db, err := sql.Open("mysql", "docker:docker@tcp(localhost:3305)/test_database?parseTime=true&loc=Asia%2FTokyo")
 	if err != nil {
-		return err
+		fmt.Print(err)
+	}
+
+	port := 8081
+	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
+	if err != nil {
+		panic(err)
 	}
 
 	queries := tutorial.New(db)
-
-	// list all authors
-	authors, err := queries.ListAuthors(ctx)
+	newUUID := uuid.New()
+	// uuidStr := newUUID.String()
+	err = queries.CreateUser(ctx, newUUID.String())
 	if err != nil {
-		return err
-	}
-	log.Println(authors)
-
-	// create an author
-	result, err := queries.CreateAuthor(ctx, tutorial.CreateAuthorParams{
-		Name: "Brian Kernighan",
-		Bio:  sql.NullString{String: "Co-author of The C Programming Language and The Go Programming Language", Valid: true},
-	})
-	if err != nil {
-		return err
+		fmt.Print(err)
 	}
 
-	insertedAuthorID, err := result.LastInsertId()
-	if err != nil {
-		return err
-	}
-	log.Println(insertedAuthorID)
+	fmt.Print(queries.GetAllUsers(ctx))
 
-	// get the author we just inserted
-	fetchedAuthor, err := queries.GetAuthor(ctx, insertedAuthorID)
-	if err != nil {
-		return err
-	}
+	s := grpc.NewServer()
 
-	// prints true
-	log.Println(reflect.DeepEqual(insertedAuthorID, fetchedAuthor.ID))
 	// return nil
 
-	r.GET("/ping", func(c *gin.Context) {
-		// Return JSON response
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
+	go func() {
+		log.Printf("start gRPC server port: %v", port)
+		s.Serve(listener)
+	}()
 
-	return r.Run()
-}
+	// r.GET("/ping", func(c *gin.Context) {
+	// 	// Return JSON response
+	// 	c.JSON(http.StatusOK, gin.H{
+	// 		"message": "pong",
+	// 	})
+	// })
 
-func main() {
-	if err := run(); err != nil {
-		log.Fatal(err)
-	}
+	// r.Run()
+
 }
 
 //テストです

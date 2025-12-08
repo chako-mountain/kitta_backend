@@ -1,3 +1,11 @@
+-- name: CreateUser :exec
+INSERT INTO users (uuid)
+VALUES (?);
+
+-- name: GetAllUsers :many
+SELECT *
+FROM users;
+
 -- name: GetUser :one
 SELECT id
 FROM users
