@@ -2,6 +2,19 @@
 INSERT INTO users (uuid)
 VALUES (?);
 
+-- name: CreateCutList :exec
+INSERT INTO cutLists (this_is_cut, user_id, name, color, count, `limit`, late_time, late_count)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+-- name : UpdateCutList :exec
+UPDATE cutLists
+SET this_is_cut = ?, name = ?, color = ?,count = ? `limit` = ?, late_time = ?, late_count = ?
+WHERE id = ?;
+
+-- name: CreateCutHistory :exec
+INSERT INTO cutHistory (this_is_cut, late_time, lists_id, lists_updated_at)
+VALUES (?, ?, ?, ?);
+
 -- name: GetAllUsers :many
 SELECT *
 FROM users;

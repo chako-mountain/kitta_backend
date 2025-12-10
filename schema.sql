@@ -7,11 +7,14 @@ CREATE TABLE users (
 -- 切った授業リスト
 CREATE TABLE cutLists (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  this_is_cut BOOLEAN NOT NULL DEFAULT TRUE,
   user_id BIGINT NOT NULL,
   name VARCHAR(255) NOT NULL,
   color VARCHAR(100) NOT NULL,
   count INT NOT NULL,
   `limit` INT NOT NULL,
+  late_time INT NOT NULL,
+  late_count INT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id)
@@ -20,6 +23,8 @@ CREATE TABLE cutLists (
 -- 切った授業リストの更新履歴
 CREATE TABLE cutHistory (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  this_is_cut BOOLEAN NOT NULL,
+  late_time INT NOT NULL,
   lists_id BIGINT NOT NULL,
   lists_updated_at TIMESTAMP NOT NULL,
   FOREIGN KEY (lists_id) REFERENCES cutLists(id)

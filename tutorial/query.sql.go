@@ -7,7 +7,60 @@ package tutorial
 
 import (
 	"context"
+	"time"
 )
+
+const createCutHistory = `-- name: CreateCutHistory :exec
+INSERT INTO cutHistory (this_is_cut, late_time, lists_id, lists_updated_at)
+VALUES (?, ?, ?, ?)
+`
+
+type CreateCutHistoryParams struct {
+	ThisIsCut      bool
+	LateTime       int32
+	ListsID        int64
+	ListsUpdatedAt time.Time
+}
+
+func (q *Queries) CreateCutHistory(ctx context.Context, arg CreateCutHistoryParams) error {
+	_, err := q.db.ExecContext(ctx, createCutHistory,
+		arg.ThisIsCut,
+		arg.LateTime,
+		arg.ListsID,
+		arg.ListsUpdatedAt,
+	)
+	return err
+}
+
+const createCutList = `-- name: CreateCutList :exec
+INSERT INTO cutLists (this_is_cut, user_id, name, color, count, ` + "`" + `limit` + "`" + `, late_time, late_count)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+`
+
+type CreateCutListParams struct {
+	ThisIsCut bool
+	UserID    int64
+	Name      string
+	Color     string
+	Count     int32
+	Limit     int32
+	LateTime  int32
+	LateCount int32
+}
+
+func (q *Queries) CreateCutList(ctx context.Context, arg CreateCutListParams) error {
+	_, err := q.db.ExecContext(ctx, createCutList,
+		arg.ThisIsCut,
+		arg.UserID,
+		arg.Name,
+		arg.Color,
+		arg.Count,
+		arg.Limit,
+		arg.LateTime,
+		arg.LateCount,
+	)
+	return err
+}
 
 const createUser = `-- name: CreateUser :exec
 INSERT INTO users (uuid)
@@ -68,7 +121,7 @@ func (q *Queries) GetAllUsers(ctx context.Context) ([]User, error) {
 }
 
 const getCutHistory = `-- name: GetCutHistory :many
-SELECT id, lists_id, lists_updated_at
+SELECT id, this_is_cut, late_time, lists_id, lists_updated_at
 FROM cutHistory
 WHERE lists_id = ?
 ORDER BY lists_updated_at DESC
@@ -83,7 +136,13 @@ func (q *Queries) GetCutHistory(ctx context.Context, listsID int64) ([]Cuthistor
 	var items []Cuthistory
 	for rows.Next() {
 		var i Cuthistory
-		if err := rows.Scan(&i.ID, &i.ListsID, &i.ListsUpdatedAt); err != nil {
+		if err := rows.Scan(
+			&i.ID,
+			&i.ThisIsCut,
+			&i.LateTime,
+			&i.ListsID,
+			&i.ListsUpdatedAt,
+		); err != nil {
 			return nil, err
 		}
 		items = append(items, i)
@@ -98,7 +157,7 @@ func (q *Queries) GetCutHistory(ctx context.Context, listsID int64) ([]Cuthistor
 }
 
 const getCutLists = `-- name: GetCutLists :many
-SELECT id, user_id, name, color, count, ` + "`" + `limit` + "`" + `, created_at, updated_at
+SELECT id, this_is_cut, user_id, name, color, count, ` + "`" + `limit` + "`" + `, late_time, late_count, created_at, updated_at
 FROM cutLists
 WHERE user_id = ?
 `
@@ -114,11 +173,14 @@ func (q *Queries) GetCutLists(ctx context.Context, userID int64) ([]Cutlist, err
 		var i Cutlist
 		if err := rows.Scan(
 			&i.ID,
+			&i.ThisIsCut,
 			&i.UserID,
 			&i.Name,
 			&i.Color,
 			&i.Count,
 			&i.Limit,
+			&i.LateTime,
+			&i.LateCount,
 			&i.CreatedAt,
 			&i.UpdatedAt,
 		); err != nil {

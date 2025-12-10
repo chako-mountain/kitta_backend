@@ -11,17 +11,22 @@ import (
 
 type Cuthistory struct {
 	ID             int64
+	ThisIsCut      bool
+	LateTime       int32
 	ListsID        int64
 	ListsUpdatedAt time.Time
 }
 
 type Cutlist struct {
 	ID        int64
+	ThisIsCut bool
 	UserID    int64
 	Name      string
 	Color     string
 	Count     int32
 	Limit     int32
+	LateTime  int32
+	LateCount int32
 	CreatedAt sql.NullTime
 	UpdatedAt sql.NullTime
 }

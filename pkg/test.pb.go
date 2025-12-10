@@ -155,13 +155,16 @@ func (x *ReqGetCutList) GetUserId() int64 {
 
 type ResGetCutList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Color         string                 `protobuf:"bytes,3,opt,name=color,proto3" json:"color,omitempty"`
-	Count         int64                  `protobuf:"varint,4,opt,name=count,proto3" json:"count,omitempty"`
-	Limit         int64                  `protobuf:"varint,5,opt,name=limit,proto3" json:"limit,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     string                 `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	ThisIsCut     bool                   `protobuf:"varint,1,opt,name=this_is_cut,json=thisIsCut,proto3" json:"this_is_cut,omitempty"`
+	Id            int64                  `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Color         string                 `protobuf:"bytes,4,opt,name=color,proto3" json:"color,omitempty"`
+	Count         int64                  `protobuf:"varint,5,opt,name=count,proto3" json:"count,omitempty"`
+	Limit         int64                  `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
+	LateTime      int64                  `protobuf:"varint,7,opt,name=late_time,json=lateTime,proto3" json:"late_time,omitempty"`
+	LateCount     int64                  `protobuf:"varint,8,opt,name=late_count,json=lateCount,proto3" json:"late_count,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     string                 `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -196,6 +199,13 @@ func (*ResGetCutList) Descriptor() ([]byte, []int) {
 	return file_test_proto_rawDescGZIP(), []int{3}
 }
 
+func (x *ResGetCutList) GetThisIsCut() bool {
+	if x != nil {
+		return x.ThisIsCut
+	}
+	return false
+}
+
 func (x *ResGetCutList) GetId() int64 {
 	if x != nil {
 		return x.Id
@@ -227,6 +237,20 @@ func (x *ResGetCutList) GetCount() int64 {
 func (x *ResGetCutList) GetLimit() int64 {
 	if x != nil {
 		return x.Limit
+	}
+	return 0
+}
+
+func (x *ResGetCutList) GetLateTime() int64 {
+	if x != nil {
+		return x.LateTime
+	}
+	return 0
+}
+
+func (x *ResGetCutList) GetLateCount() int64 {
+	if x != nil {
+		return x.LateCount
 	}
 	return 0
 }
@@ -584,17 +608,22 @@ const file_test_proto_rawDesc = "" +
 	"\x11res_getUserByUuid\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\")\n" +
 	"\x0ereq_getCutList\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"\xb4\x01\n" +
-	"\x0eres_getCutList\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
-	"\x05color\x18\x03 \x01(\tR\x05color\x12\x14\n" +
-	"\x05count\x18\x04 \x01(\x03R\x05count\x12\x14\n" +
-	"\x05limit\x18\x05 \x01(\x03R\x05limit\x12\x1d\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\"\x90\x02\n" +
+	"\x0eres_getCutList\x12\x1e\n" +
+	"\vthis_is_cut\x18\x01 \x01(\bR\tthisIsCut\x12\x0e\n" +
+	"\x02id\x18\x02 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12\x14\n" +
+	"\x05color\x18\x04 \x01(\tR\x05color\x12\x14\n" +
+	"\x05count\x18\x05 \x01(\x03R\x05count\x12\x14\n" +
+	"\x05limit\x18\x06 \x01(\x03R\x05limit\x12\x1b\n" +
+	"\tlate_time\x18\a \x01(\x03R\blateTime\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x06 \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"late_count\x18\b \x01(\x03R\tlateCount\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\a \x01(\tR\tupdatedAt\",\n" +
+	"created_at\x18\t \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\n" +
+	" \x01(\tR\tupdatedAt\",\n" +
 	"\x11req_getCutHistory\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\"B\n" +
 	"\x11res_getCutHistory\x12\x0e\n" +
