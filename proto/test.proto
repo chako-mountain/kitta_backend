@@ -3,6 +3,14 @@ package tutorial;
 
 option go_package = "./pkg";
 
+message reqcreateUser {
+    string uuid = 1;
+}
+
+message rescreateUser {
+    int64 id = 1;  // AUTO_INCREMENT で生成された id
+}
+
 message ReqCreateCutList {
     bool this_is_cut = 1;
     int64 user_id = 2;
@@ -10,7 +18,18 @@ message ReqCreateCutList {
     string color = 4;
     int64 count = 5;
     int64 limit = 6;
-    string late_time = 7;   // 例: "2025-01-01 12:00:00"
+    int64 late_time = 7;   // 例: "2025-01-01 12:00:00"
+    int64 late_count = 8;
+}
+
+message ReqUpateCutList {
+    int64 id = 1;
+    bool this_is_cut = 2;
+    string name = 3;
+    string color = 4;
+    int64 count = 5;
+    int64 limit = 6;
+    int64 late_time = 7;   // 例: "2025-01-01 12:00:00"
     int64 late_count = 8;
 }
 
@@ -37,10 +56,10 @@ message res_getCutList {
     string color = 4;
     int64 count = 5;
     int64 limit = 6;
-    int64 late_time = 7;
-    int64 late_count = 8;
-    string created_at = 9;
-    string updated_at = 10;
+    // int64 late_time = 7;
+    int64 late_count = 7;
+    string created_at = 8;
+    string updated_at = 9;
 }
 
 message req_getCutHistory {
@@ -56,6 +75,7 @@ message res_getCutHistory {
 }
 
 service CutListService {
+    rpc CreateUser (reqcreateUser) returns (rescreateUser);
     rpc GetUserByUuid (req_getUserByUuid) returns (res_getUserByUuid);
     rpc GetCutList (req_getCutList) returns (stream res_getCutList);
     rpc GetHistory (req_getCutHistory) returns (stream res_getCutHistory);

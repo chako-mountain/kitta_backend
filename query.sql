@@ -1,14 +1,15 @@
--- name: CreateUser :exec
+-- name: CreateUser :execresult
 INSERT INTO users (uuid)
 VALUES (?);
 
--- name: CreateCutList :exec
+-- name: CreateCutList :execresult
 INSERT INTO cutLists (this_is_cut, user_id, name, color, count, `limit`, late_time, late_count)
 VALUES (?, ?, ?, ?, ?, ?, ?, ?);
 
--- name : UpdateCutList :exec
+
+-- name: UpdateCutList :exec
 UPDATE cutLists
-SET this_is_cut = ?, name = ?, color = ?,count = ? `limit` = ?, late_time = ?, late_count = ?
+SET this_is_cut = ?, name = ?, color = ?,count = ?, `limit` = ?, late_time = ?, late_count = ?
 WHERE id = ?;
 
 -- name: CreateCutHistory :exec

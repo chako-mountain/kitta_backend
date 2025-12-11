@@ -1,7 +1,7 @@
 -- User定義
 CREATE TABLE users (
   id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  uuid VARCHAR(36) NOT NULL
+  uuid VARCHAR(36) NOT NULL UNIQUE
 );
 
 -- 切った授業リスト

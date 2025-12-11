@@ -21,6 +21,338 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type ReqcreateUser struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReqcreateUser) Reset() {
+	*x = ReqcreateUser{}
+	mi := &file_test_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReqcreateUser) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReqcreateUser) ProtoMessage() {}
+
+func (x *ReqcreateUser) ProtoReflect() protoreflect.Message {
+	mi := &file_test_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReqcreateUser.ProtoReflect.Descriptor instead.
+func (*ReqcreateUser) Descriptor() ([]byte, []int) {
+	return file_test_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *ReqcreateUser) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+type RescreateUser struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // AUTO_INCREMENT で生成された id
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RescreateUser) Reset() {
+	*x = RescreateUser{}
+	mi := &file_test_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RescreateUser) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RescreateUser) ProtoMessage() {}
+
+func (x *RescreateUser) ProtoReflect() protoreflect.Message {
+	mi := &file_test_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RescreateUser.ProtoReflect.Descriptor instead.
+func (*RescreateUser) Descriptor() ([]byte, []int) {
+	return file_test_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *RescreateUser) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type ReqCreateCutList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ThisIsCut     bool                   `protobuf:"varint,1,opt,name=this_is_cut,json=thisIsCut,proto3" json:"this_is_cut,omitempty"`
+	UserId        int64                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Color         string                 `protobuf:"bytes,4,opt,name=color,proto3" json:"color,omitempty"`
+	Count         int64                  `protobuf:"varint,5,opt,name=count,proto3" json:"count,omitempty"`
+	Limit         int64                  `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
+	LateTime      int64                  `protobuf:"varint,7,opt,name=late_time,json=lateTime,proto3" json:"late_time,omitempty"` // 例: "2025-01-01 12:00:00"
+	LateCount     int64                  `protobuf:"varint,8,opt,name=late_count,json=lateCount,proto3" json:"late_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReqCreateCutList) Reset() {
+	*x = ReqCreateCutList{}
+	mi := &file_test_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReqCreateCutList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReqCreateCutList) ProtoMessage() {}
+
+func (x *ReqCreateCutList) ProtoReflect() protoreflect.Message {
+	mi := &file_test_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReqCreateCutList.ProtoReflect.Descriptor instead.
+func (*ReqCreateCutList) Descriptor() ([]byte, []int) {
+	return file_test_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ReqCreateCutList) GetThisIsCut() bool {
+	if x != nil {
+		return x.ThisIsCut
+	}
+	return false
+}
+
+func (x *ReqCreateCutList) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *ReqCreateCutList) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ReqCreateCutList) GetColor() string {
+	if x != nil {
+		return x.Color
+	}
+	return ""
+}
+
+func (x *ReqCreateCutList) GetCount() int64 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+func (x *ReqCreateCutList) GetLimit() int64 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ReqCreateCutList) GetLateTime() int64 {
+	if x != nil {
+		return x.LateTime
+	}
+	return 0
+}
+
+func (x *ReqCreateCutList) GetLateCount() int64 {
+	if x != nil {
+		return x.LateCount
+	}
+	return 0
+}
+
+type ReqUpateCutList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	ThisIsCut     bool                   `protobuf:"varint,2,opt,name=this_is_cut,json=thisIsCut,proto3" json:"this_is_cut,omitempty"`
+	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Color         string                 `protobuf:"bytes,4,opt,name=color,proto3" json:"color,omitempty"`
+	Count         int64                  `protobuf:"varint,5,opt,name=count,proto3" json:"count,omitempty"`
+	Limit         int64                  `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
+	LateTime      int64                  `protobuf:"varint,7,opt,name=late_time,json=lateTime,proto3" json:"late_time,omitempty"` // 例: "2025-01-01 12:00:00"
+	LateCount     int64                  `protobuf:"varint,8,opt,name=late_count,json=lateCount,proto3" json:"late_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReqUpateCutList) Reset() {
+	*x = ReqUpateCutList{}
+	mi := &file_test_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReqUpateCutList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReqUpateCutList) ProtoMessage() {}
+
+func (x *ReqUpateCutList) ProtoReflect() protoreflect.Message {
+	mi := &file_test_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReqUpateCutList.ProtoReflect.Descriptor instead.
+func (*ReqUpateCutList) Descriptor() ([]byte, []int) {
+	return file_test_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ReqUpateCutList) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *ReqUpateCutList) GetThisIsCut() bool {
+	if x != nil {
+		return x.ThisIsCut
+	}
+	return false
+}
+
+func (x *ReqUpateCutList) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ReqUpateCutList) GetColor() string {
+	if x != nil {
+		return x.Color
+	}
+	return ""
+}
+
+func (x *ReqUpateCutList) GetCount() int64 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+func (x *ReqUpateCutList) GetLimit() int64 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ReqUpateCutList) GetLateTime() int64 {
+	if x != nil {
+		return x.LateTime
+	}
+	return 0
+}
+
+func (x *ReqUpateCutList) GetLateCount() int64 {
+	if x != nil {
+		return x.LateCount
+	}
+	return 0
+}
+
+type ResCreateCutList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // AUTO_INCREMENT で生成された id
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResCreateCutList) Reset() {
+	*x = ResCreateCutList{}
+	mi := &file_test_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResCreateCutList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResCreateCutList) ProtoMessage() {}
+
+func (x *ResCreateCutList) ProtoReflect() protoreflect.Message {
+	mi := &file_test_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResCreateCutList.ProtoReflect.Descriptor instead.
+func (*ResCreateCutList) Descriptor() ([]byte, []int) {
+	return file_test_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ResCreateCutList) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
 type ReqGetUserByUuid struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uuid          string                 `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
@@ -30,7 +362,7 @@ type ReqGetUserByUuid struct {
 
 func (x *ReqGetUserByUuid) Reset() {
 	*x = ReqGetUserByUuid{}
-	mi := &file_test_proto_msgTypes[0]
+	mi := &file_test_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42,7 +374,7 @@ func (x *ReqGetUserByUuid) String() string {
 func (*ReqGetUserByUuid) ProtoMessage() {}
 
 func (x *ReqGetUserByUuid) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[0]
+	mi := &file_test_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -55,7 +387,7 @@ func (x *ReqGetUserByUuid) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReqGetUserByUuid.ProtoReflect.Descriptor instead.
 func (*ReqGetUserByUuid) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{0}
+	return file_test_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ReqGetUserByUuid) GetUuid() string {
@@ -74,7 +406,7 @@ type ResGetUserByUuid struct {
 
 func (x *ResGetUserByUuid) Reset() {
 	*x = ResGetUserByUuid{}
-	mi := &file_test_proto_msgTypes[1]
+	mi := &file_test_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -86,7 +418,7 @@ func (x *ResGetUserByUuid) String() string {
 func (*ResGetUserByUuid) ProtoMessage() {}
 
 func (x *ResGetUserByUuid) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[1]
+	mi := &file_test_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -99,7 +431,7 @@ func (x *ResGetUserByUuid) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResGetUserByUuid.ProtoReflect.Descriptor instead.
 func (*ResGetUserByUuid) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{1}
+	return file_test_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ResGetUserByUuid) GetId() int64 {
@@ -118,7 +450,7 @@ type ReqGetCutList struct {
 
 func (x *ReqGetCutList) Reset() {
 	*x = ReqGetCutList{}
-	mi := &file_test_proto_msgTypes[2]
+	mi := &file_test_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -130,7 +462,7 @@ func (x *ReqGetCutList) String() string {
 func (*ReqGetCutList) ProtoMessage() {}
 
 func (x *ReqGetCutList) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[2]
+	mi := &file_test_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -143,7 +475,7 @@ func (x *ReqGetCutList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReqGetCutList.ProtoReflect.Descriptor instead.
 func (*ReqGetCutList) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{2}
+	return file_test_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ReqGetCutList) GetUserId() int64 {
@@ -154,24 +486,24 @@ func (x *ReqGetCutList) GetUserId() int64 {
 }
 
 type ResGetCutList struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ThisIsCut     bool                   `protobuf:"varint,1,opt,name=this_is_cut,json=thisIsCut,proto3" json:"this_is_cut,omitempty"`
-	Id            int64                  `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	Color         string                 `protobuf:"bytes,4,opt,name=color,proto3" json:"color,omitempty"`
-	Count         int64                  `protobuf:"varint,5,opt,name=count,proto3" json:"count,omitempty"`
-	Limit         int64                  `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
-	LateTime      int64                  `protobuf:"varint,7,opt,name=late_time,json=lateTime,proto3" json:"late_time,omitempty"`
-	LateCount     int64                  `protobuf:"varint,8,opt,name=late_count,json=lateCount,proto3" json:"late_count,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     string                 `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	ThisIsCut bool                   `protobuf:"varint,1,opt,name=this_is_cut,json=thisIsCut,proto3" json:"this_is_cut,omitempty"`
+	Id        int64                  `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	Name      string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Color     string                 `protobuf:"bytes,4,opt,name=color,proto3" json:"color,omitempty"`
+	Count     int64                  `protobuf:"varint,5,opt,name=count,proto3" json:"count,omitempty"`
+	Limit     int64                  `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
+	// int64 late_time = 7;
+	LateCount     int64  `protobuf:"varint,7,opt,name=late_count,json=lateCount,proto3" json:"late_count,omitempty"`
+	CreatedAt     string `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     string `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ResGetCutList) Reset() {
 	*x = ResGetCutList{}
-	mi := &file_test_proto_msgTypes[3]
+	mi := &file_test_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -183,7 +515,7 @@ func (x *ResGetCutList) String() string {
 func (*ResGetCutList) ProtoMessage() {}
 
 func (x *ResGetCutList) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[3]
+	mi := &file_test_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -196,7 +528,7 @@ func (x *ResGetCutList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResGetCutList.ProtoReflect.Descriptor instead.
 func (*ResGetCutList) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{3}
+	return file_test_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ResGetCutList) GetThisIsCut() bool {
@@ -241,13 +573,6 @@ func (x *ResGetCutList) GetLimit() int64 {
 	return 0
 }
 
-func (x *ResGetCutList) GetLateTime() int64 {
-	if x != nil {
-		return x.LateTime
-	}
-	return 0
-}
-
 func (x *ResGetCutList) GetLateCount() int64 {
 	if x != nil {
 		return x.LateCount
@@ -271,14 +596,14 @@ func (x *ResGetCutList) GetUpdatedAt() string {
 
 type ReqGetCutHistory struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ListId        int64                  `protobuf:"varint,1,opt,name=list_id,json=listId,proto3" json:"list_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ReqGetCutHistory) Reset() {
 	*x = ReqGetCutHistory{}
-	mi := &file_test_proto_msgTypes[4]
+	mi := &file_test_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -290,7 +615,7 @@ func (x *ReqGetCutHistory) String() string {
 func (*ReqGetCutHistory) ProtoMessage() {}
 
 func (x *ReqGetCutHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[4]
+	mi := &file_test_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -303,27 +628,30 @@ func (x *ReqGetCutHistory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReqGetCutHistory.ProtoReflect.Descriptor instead.
 func (*ReqGetCutHistory) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{4}
+	return file_test_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *ReqGetCutHistory) GetUserId() int64 {
+func (x *ReqGetCutHistory) GetListId() int64 {
 	if x != nil {
-		return x.UserId
+		return x.ListId
 	}
 	return 0
 }
 
 type ResGetCutHistory struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	UpdatedAt     string                 `protobuf:"bytes,2,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Id             int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	ThisIsCut      bool                   `protobuf:"varint,2,opt,name=this_is_cut,json=thisIsCut,proto3" json:"this_is_cut,omitempty"`
+	LateTime       int64                  `protobuf:"varint,3,opt,name=late_time,json=lateTime,proto3" json:"late_time,omitempty"`
+	ListsUpdatedAt string                 `protobuf:"bytes,4,opt,name=lists_updated_at,json=listsUpdatedAt,proto3" json:"lists_updated_at,omitempty"`
+	UpdatedAt      string                 `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *ResGetCutHistory) Reset() {
 	*x = ResGetCutHistory{}
-	mi := &file_test_proto_msgTypes[5]
+	mi := &file_test_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -335,7 +663,7 @@ func (x *ResGetCutHistory) String() string {
 func (*ResGetCutHistory) ProtoMessage() {}
 
 func (x *ResGetCutHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[5]
+	mi := &file_test_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -348,7 +676,7 @@ func (x *ResGetCutHistory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResGetCutHistory.ProtoReflect.Descriptor instead.
 func (*ResGetCutHistory) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{5}
+	return file_test_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ResGetCutHistory) GetId() int64 {
@@ -356,6 +684,27 @@ func (x *ResGetCutHistory) GetId() int64 {
 		return x.Id
 	}
 	return 0
+}
+
+func (x *ResGetCutHistory) GetThisIsCut() bool {
+	if x != nil {
+		return x.ThisIsCut
+	}
+	return false
+}
+
+func (x *ResGetCutHistory) GetLateTime() int64 {
+	if x != nil {
+		return x.LateTime
+	}
+	return 0
+}
+
+func (x *ResGetCutHistory) GetListsUpdatedAt() string {
+	if x != nil {
+		return x.ListsUpdatedAt
+	}
+	return ""
 }
 
 func (x *ResGetCutHistory) GetUpdatedAt() string {
@@ -374,7 +723,7 @@ type ReqGetEventList struct {
 
 func (x *ReqGetEventList) Reset() {
 	*x = ReqGetEventList{}
-	mi := &file_test_proto_msgTypes[6]
+	mi := &file_test_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -386,7 +735,7 @@ func (x *ReqGetEventList) String() string {
 func (*ReqGetEventList) ProtoMessage() {}
 
 func (x *ReqGetEventList) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[6]
+	mi := &file_test_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -399,7 +748,7 @@ func (x *ReqGetEventList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReqGetEventList.ProtoReflect.Descriptor instead.
 func (*ReqGetEventList) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{6}
+	return file_test_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ReqGetEventList) GetUserId() int64 {
@@ -424,7 +773,7 @@ type ResGetEventList struct {
 
 func (x *ResGetEventList) Reset() {
 	*x = ResGetEventList{}
-	mi := &file_test_proto_msgTypes[7]
+	mi := &file_test_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -436,7 +785,7 @@ func (x *ResGetEventList) String() string {
 func (*ResGetEventList) ProtoMessage() {}
 
 func (x *ResGetEventList) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[7]
+	mi := &file_test_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -449,7 +798,7 @@ func (x *ResGetEventList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResGetEventList.ProtoReflect.Descriptor instead.
 func (*ResGetEventList) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{7}
+	return file_test_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ResGetEventList) GetId() int64 {
@@ -510,7 +859,7 @@ type ReqGetEventHistory struct {
 
 func (x *ReqGetEventHistory) Reset() {
 	*x = ReqGetEventHistory{}
-	mi := &file_test_proto_msgTypes[8]
+	mi := &file_test_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -522,7 +871,7 @@ func (x *ReqGetEventHistory) String() string {
 func (*ReqGetEventHistory) ProtoMessage() {}
 
 func (x *ReqGetEventHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[8]
+	mi := &file_test_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -535,7 +884,7 @@ func (x *ReqGetEventHistory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReqGetEventHistory.ProtoReflect.Descriptor instead.
 func (*ReqGetEventHistory) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{8}
+	return file_test_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ReqGetEventHistory) GetUserId() int64 {
@@ -555,7 +904,7 @@ type ResGetEventHistory struct {
 
 func (x *ResGetEventHistory) Reset() {
 	*x = ResGetEventHistory{}
-	mi := &file_test_proto_msgTypes[9]
+	mi := &file_test_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -567,7 +916,7 @@ func (x *ResGetEventHistory) String() string {
 func (*ResGetEventHistory) ProtoMessage() {}
 
 func (x *ResGetEventHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[9]
+	mi := &file_test_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -580,7 +929,7 @@ func (x *ResGetEventHistory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResGetEventHistory.ProtoReflect.Descriptor instead.
 func (*ResGetEventHistory) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{9}
+	return file_test_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ResGetEventHistory) GetId() int64 {
@@ -602,34 +951,61 @@ var File_test_proto protoreflect.FileDescriptor
 const file_test_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"test.proto\x12\btutorial\"'\n" +
-	"\x11req_getUserByUuid\x12\x12\n" +
-	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"#\n" +
-	"\x11res_getUserByUuid\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\")\n" +
-	"\x0ereq_getCutList\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"\x90\x02\n" +
-	"\x0eres_getCutList\x12\x1e\n" +
-	"\vthis_is_cut\x18\x01 \x01(\bR\tthisIsCut\x12\x0e\n" +
-	"\x02id\x18\x02 \x01(\x03R\x02id\x12\x12\n" +
+	"test.proto\x12\btutorial\"#\n" +
+	"\rreqcreateUser\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"\x1f\n" +
+	"\rrescreateUser\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"\xdd\x01\n" +
+	"\x10ReqCreateCutList\x12\x1e\n" +
+	"\vthis_is_cut\x18\x01 \x01(\bR\tthisIsCut\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\x03R\x06userId\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x14\n" +
 	"\x05color\x18\x04 \x01(\tR\x05color\x12\x14\n" +
 	"\x05count\x18\x05 \x01(\x03R\x05count\x12\x14\n" +
 	"\x05limit\x18\x06 \x01(\x03R\x05limit\x12\x1b\n" +
 	"\tlate_time\x18\a \x01(\x03R\blateTime\x12\x1d\n" +
 	"\n" +
-	"late_count\x18\b \x01(\x03R\tlateCount\x12\x1d\n" +
+	"late_count\x18\b \x01(\x03R\tlateCount\"\xd3\x01\n" +
+	"\x0fReqUpateCutList\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1e\n" +
+	"\vthis_is_cut\x18\x02 \x01(\bR\tthisIsCut\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12\x14\n" +
+	"\x05color\x18\x04 \x01(\tR\x05color\x12\x14\n" +
+	"\x05count\x18\x05 \x01(\x03R\x05count\x12\x14\n" +
+	"\x05limit\x18\x06 \x01(\x03R\x05limit\x12\x1b\n" +
+	"\tlate_time\x18\a \x01(\x03R\blateTime\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\t \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"late_count\x18\b \x01(\x03R\tlateCount\"\"\n" +
+	"\x10ResCreateCutList\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"'\n" +
+	"\x11req_getUserByUuid\x12\x12\n" +
+	"\x04uuid\x18\x01 \x01(\tR\x04uuid\"#\n" +
+	"\x11res_getUserByUuid\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\")\n" +
+	"\x0ereq_getCutList\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x03R\x06userId\"\xf3\x01\n" +
+	"\x0eres_getCutList\x12\x1e\n" +
+	"\vthis_is_cut\x18\x01 \x01(\bR\tthisIsCut\x12\x0e\n" +
+	"\x02id\x18\x02 \x01(\x03R\x02id\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12\x14\n" +
+	"\x05color\x18\x04 \x01(\tR\x05color\x12\x14\n" +
+	"\x05count\x18\x05 \x01(\x03R\x05count\x12\x14\n" +
+	"\x05limit\x18\x06 \x01(\x03R\x05limit\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\n" +
-	" \x01(\tR\tupdatedAt\",\n" +
+	"late_count\x18\a \x01(\x03R\tlateCount\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\b \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\t \x01(\tR\tupdatedAt\",\n" +
 	"\x11req_getCutHistory\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\"B\n" +
+	"\alist_id\x18\x01 \x01(\x03R\x06listId\"\xa9\x01\n" +
 	"\x11res_getCutHistory\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1e\n" +
+	"\vthis_is_cut\x18\x02 \x01(\bR\tthisIsCut\x12\x1b\n" +
+	"\tlate_time\x18\x03 \x01(\x03R\blateTime\x12(\n" +
+	"\x10lists_updated_at\x18\x04 \x01(\tR\x0elistsUpdatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\x02 \x01(\tR\tupdatedAt\"+\n" +
+	"updated_at\x18\x05 \x01(\tR\tupdatedAt\"+\n" +
 	"\x10req_getEventList\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\"\xb6\x01\n" +
 	"\x10res_getEventList\x12\x0e\n" +
@@ -647,13 +1023,16 @@ const file_test_proto_rawDesc = "" +
 	"\x13res_getEventHistory\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\x02 \x01(\tR\tupdatedAt2\xe9\x01\n" +
-	"\x0eCutListService\x12I\n" +
+	"updated_at\x18\x02 \x01(\tR\tupdatedAt2\xf2\x02\n" +
+	"\x0eCutListService\x12>\n" +
+	"\n" +
+	"CreateUser\x12\x17.tutorial.reqcreateUser\x1a\x17.tutorial.rescreateUser\x12I\n" +
 	"\rGetUserByUuid\x12\x1b.tutorial.req_getUserByUuid\x1a\x1b.tutorial.res_getUserByUuid\x12B\n" +
 	"\n" +
 	"GetCutList\x12\x18.tutorial.req_getCutList\x1a\x18.tutorial.res_getCutList0\x01\x12H\n" +
 	"\n" +
-	"GetHistory\x12\x1b.tutorial.req_getCutHistory\x1a\x1b.tutorial.res_getCutHistory0\x012\xf5\x01\n" +
+	"GetHistory\x12\x1b.tutorial.req_getCutHistory\x1a\x1b.tutorial.res_getCutHistory0\x01\x12G\n" +
+	"\rCreateCutList\x12\x1a.tutorial.ReqCreateCutList\x1a\x1a.tutorial.ResCreateCutList2\xf5\x01\n" +
 	"\x10EventListService\x12I\n" +
 	"\rGetUserByUuid\x12\x1b.tutorial.req_getUserByUuid\x1a\x1b.tutorial.res_getUserByUuid\x12H\n" +
 	"\fGetEventList\x12\x1a.tutorial.req_getEventList\x1a\x1a.tutorial.res_getEventList0\x01\x12L\n" +
@@ -672,37 +1051,46 @@ func file_test_proto_rawDescGZIP() []byte {
 	return file_test_proto_rawDescData
 }
 
-var file_test_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_test_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_test_proto_goTypes = []any{
-	(*ReqGetUserByUuid)(nil),   // 0: tutorial.req_getUserByUuid
-	(*ResGetUserByUuid)(nil),   // 1: tutorial.res_getUserByUuid
-	(*ReqGetCutList)(nil),      // 2: tutorial.req_getCutList
-	(*ResGetCutList)(nil),      // 3: tutorial.res_getCutList
-	(*ReqGetCutHistory)(nil),   // 4: tutorial.req_getCutHistory
-	(*ResGetCutHistory)(nil),   // 5: tutorial.res_getCutHistory
-	(*ReqGetEventList)(nil),    // 6: tutorial.req_getEventList
-	(*ResGetEventList)(nil),    // 7: tutorial.res_getEventList
-	(*ReqGetEventHistory)(nil), // 8: tutorial.req_getEventHistory
-	(*ResGetEventHistory)(nil), // 9: tutorial.res_getEventHistory
+	(*ReqcreateUser)(nil),      // 0: tutorial.reqcreateUser
+	(*RescreateUser)(nil),      // 1: tutorial.rescreateUser
+	(*ReqCreateCutList)(nil),   // 2: tutorial.ReqCreateCutList
+	(*ReqUpateCutList)(nil),    // 3: tutorial.ReqUpateCutList
+	(*ResCreateCutList)(nil),   // 4: tutorial.ResCreateCutList
+	(*ReqGetUserByUuid)(nil),   // 5: tutorial.req_getUserByUuid
+	(*ResGetUserByUuid)(nil),   // 6: tutorial.res_getUserByUuid
+	(*ReqGetCutList)(nil),      // 7: tutorial.req_getCutList
+	(*ResGetCutList)(nil),      // 8: tutorial.res_getCutList
+	(*ReqGetCutHistory)(nil),   // 9: tutorial.req_getCutHistory
+	(*ResGetCutHistory)(nil),   // 10: tutorial.res_getCutHistory
+	(*ReqGetEventList)(nil),    // 11: tutorial.req_getEventList
+	(*ResGetEventList)(nil),    // 12: tutorial.res_getEventList
+	(*ReqGetEventHistory)(nil), // 13: tutorial.req_getEventHistory
+	(*ResGetEventHistory)(nil), // 14: tutorial.res_getEventHistory
 }
 var file_test_proto_depIdxs = []int32{
-	0, // 0: tutorial.CutListService.GetUserByUuid:input_type -> tutorial.req_getUserByUuid
-	2, // 1: tutorial.CutListService.GetCutList:input_type -> tutorial.req_getCutList
-	4, // 2: tutorial.CutListService.GetHistory:input_type -> tutorial.req_getCutHistory
-	0, // 3: tutorial.EventListService.GetUserByUuid:input_type -> tutorial.req_getUserByUuid
-	6, // 4: tutorial.EventListService.GetEventList:input_type -> tutorial.req_getEventList
-	8, // 5: tutorial.EventListService.GetHistory:input_type -> tutorial.req_getEventHistory
-	1, // 6: tutorial.CutListService.GetUserByUuid:output_type -> tutorial.res_getUserByUuid
-	3, // 7: tutorial.CutListService.GetCutList:output_type -> tutorial.res_getCutList
-	5, // 8: tutorial.CutListService.GetHistory:output_type -> tutorial.res_getCutHistory
-	1, // 9: tutorial.EventListService.GetUserByUuid:output_type -> tutorial.res_getUserByUuid
-	7, // 10: tutorial.EventListService.GetEventList:output_type -> tutorial.res_getEventList
-	9, // 11: tutorial.EventListService.GetHistory:output_type -> tutorial.res_getEventHistory
-	6, // [6:12] is the sub-list for method output_type
-	0, // [0:6] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,  // 0: tutorial.CutListService.CreateUser:input_type -> tutorial.reqcreateUser
+	5,  // 1: tutorial.CutListService.GetUserByUuid:input_type -> tutorial.req_getUserByUuid
+	7,  // 2: tutorial.CutListService.GetCutList:input_type -> tutorial.req_getCutList
+	9,  // 3: tutorial.CutListService.GetHistory:input_type -> tutorial.req_getCutHistory
+	2,  // 4: tutorial.CutListService.CreateCutList:input_type -> tutorial.ReqCreateCutList
+	5,  // 5: tutorial.EventListService.GetUserByUuid:input_type -> tutorial.req_getUserByUuid
+	11, // 6: tutorial.EventListService.GetEventList:input_type -> tutorial.req_getEventList
+	13, // 7: tutorial.EventListService.GetHistory:input_type -> tutorial.req_getEventHistory
+	1,  // 8: tutorial.CutListService.CreateUser:output_type -> tutorial.rescreateUser
+	6,  // 9: tutorial.CutListService.GetUserByUuid:output_type -> tutorial.res_getUserByUuid
+	8,  // 10: tutorial.CutListService.GetCutList:output_type -> tutorial.res_getCutList
+	10, // 11: tutorial.CutListService.GetHistory:output_type -> tutorial.res_getCutHistory
+	4,  // 12: tutorial.CutListService.CreateCutList:output_type -> tutorial.ResCreateCutList
+	6,  // 13: tutorial.EventListService.GetUserByUuid:output_type -> tutorial.res_getUserByUuid
+	12, // 14: tutorial.EventListService.GetEventList:output_type -> tutorial.res_getEventList
+	14, // 15: tutorial.EventListService.GetHistory:output_type -> tutorial.res_getEventHistory
+	8,  // [8:16] is the sub-list for method output_type
+	0,  // [0:8] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_test_proto_init() }
@@ -716,7 +1104,7 @@ func file_test_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_test_proto_rawDesc), len(file_test_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   2,
 		},

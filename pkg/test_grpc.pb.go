@@ -19,18 +19,22 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	CutListService_CreateUser_FullMethodName    = "/tutorial.CutListService/CreateUser"
 	CutListService_GetUserByUuid_FullMethodName = "/tutorial.CutListService/GetUserByUuid"
 	CutListService_GetCutList_FullMethodName    = "/tutorial.CutListService/GetCutList"
 	CutListService_GetHistory_FullMethodName    = "/tutorial.CutListService/GetHistory"
+	CutListService_CreateCutList_FullMethodName = "/tutorial.CutListService/CreateCutList"
 )
 
 // CutListServiceClient is the client API for CutListService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CutListServiceClient interface {
+	CreateUser(ctx context.Context, in *ReqcreateUser, opts ...grpc.CallOption) (*RescreateUser, error)
 	GetUserByUuid(ctx context.Context, in *ReqGetUserByUuid, opts ...grpc.CallOption) (*ResGetUserByUuid, error)
 	GetCutList(ctx context.Context, in *ReqGetCutList, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ResGetCutList], error)
 	GetHistory(ctx context.Context, in *ReqGetCutHistory, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ResGetCutHistory], error)
+	CreateCutList(ctx context.Context, in *ReqCreateCutList, opts ...grpc.CallOption) (*ResCreateCutList, error)
 }
 
 type cutListServiceClient struct {
@@ -39,6 +43,16 @@ type cutListServiceClient struct {
 
 func NewCutListServiceClient(cc grpc.ClientConnInterface) CutListServiceClient {
 	return &cutListServiceClient{cc}
+}
+
+func (c *cutListServiceClient) CreateUser(ctx context.Context, in *ReqcreateUser, opts ...grpc.CallOption) (*RescreateUser, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RescreateUser)
+	err := c.cc.Invoke(ctx, CutListService_CreateUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *cutListServiceClient) GetUserByUuid(ctx context.Context, in *ReqGetUserByUuid, opts ...grpc.CallOption) (*ResGetUserByUuid, error) {
@@ -89,13 +103,25 @@ func (c *cutListServiceClient) GetHistory(ctx context.Context, in *ReqGetCutHist
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type CutListService_GetHistoryClient = grpc.ServerStreamingClient[ResGetCutHistory]
 
+func (c *cutListServiceClient) CreateCutList(ctx context.Context, in *ReqCreateCutList, opts ...grpc.CallOption) (*ResCreateCutList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResCreateCutList)
+	err := c.cc.Invoke(ctx, CutListService_CreateCutList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CutListServiceServer is the server API for CutListService service.
 // All implementations must embed UnimplementedCutListServiceServer
 // for forward compatibility.
 type CutListServiceServer interface {
+	CreateUser(context.Context, *ReqcreateUser) (*RescreateUser, error)
 	GetUserByUuid(context.Context, *ReqGetUserByUuid) (*ResGetUserByUuid, error)
 	GetCutList(*ReqGetCutList, grpc.ServerStreamingServer[ResGetCutList]) error
 	GetHistory(*ReqGetCutHistory, grpc.ServerStreamingServer[ResGetCutHistory]) error
+	CreateCutList(context.Context, *ReqCreateCutList) (*ResCreateCutList, error)
 	mustEmbedUnimplementedCutListServiceServer()
 }
 
@@ -106,6 +132,9 @@ type CutListServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedCutListServiceServer struct{}
 
+func (UnimplementedCutListServiceServer) CreateUser(context.Context, *ReqcreateUser) (*RescreateUser, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateUser not implemented")
+}
 func (UnimplementedCutListServiceServer) GetUserByUuid(context.Context, *ReqGetUserByUuid) (*ResGetUserByUuid, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUserByUuid not implemented")
 }
@@ -114,6 +143,9 @@ func (UnimplementedCutListServiceServer) GetCutList(*ReqGetCutList, grpc.ServerS
 }
 func (UnimplementedCutListServiceServer) GetHistory(*ReqGetCutHistory, grpc.ServerStreamingServer[ResGetCutHistory]) error {
 	return status.Error(codes.Unimplemented, "method GetHistory not implemented")
+}
+func (UnimplementedCutListServiceServer) CreateCutList(context.Context, *ReqCreateCutList) (*ResCreateCutList, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateCutList not implemented")
 }
 func (UnimplementedCutListServiceServer) mustEmbedUnimplementedCutListServiceServer() {}
 func (UnimplementedCutListServiceServer) testEmbeddedByValue()                        {}
@@ -134,6 +166,24 @@ func RegisterCutListServiceServer(s grpc.ServiceRegistrar, srv CutListServiceSer
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&CutListService_ServiceDesc, srv)
+}
+
+func _CutListService_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReqcreateUser)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CutListServiceServer).CreateUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CutListService_CreateUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CutListServiceServer).CreateUser(ctx, req.(*ReqcreateUser))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _CutListService_GetUserByUuid_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -176,6 +226,24 @@ func _CutListService_GetHistory_Handler(srv interface{}, stream grpc.ServerStrea
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type CutListService_GetHistoryServer = grpc.ServerStreamingServer[ResGetCutHistory]
 
+func _CutListService_CreateCutList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReqCreateCutList)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CutListServiceServer).CreateCutList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CutListService_CreateCutList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CutListServiceServer).CreateCutList(ctx, req.(*ReqCreateCutList))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CutListService_ServiceDesc is the grpc.ServiceDesc for CutListService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -184,8 +252,16 @@ var CutListService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*CutListServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "CreateUser",
+			Handler:    _CutListService_CreateUser_Handler,
+		},
+		{
 			MethodName: "GetUserByUuid",
 			Handler:    _CutListService_GetUserByUuid_Handler,
+		},
+		{
+			MethodName: "CreateCutList",
+			Handler:    _CutListService_CreateCutList_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

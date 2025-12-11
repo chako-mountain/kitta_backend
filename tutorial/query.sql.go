@@ -7,6 +7,7 @@ package tutorial
 
 import (
 	"context"
+	"database/sql"
 	"time"
 )
 
@@ -32,7 +33,7 @@ func (q *Queries) CreateCutHistory(ctx context.Context, arg CreateCutHistoryPara
 	return err
 }
 
-const createCutList = `-- name: CreateCutList :exec
+const createCutList = `-- name: CreateCutList :execresult
 INSERT INTO cutLists (this_is_cut, user_id, name, color, count, ` + "`" + `limit` + "`" + `, late_time, late_count)
 VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 `
@@ -48,8 +49,8 @@ type CreateCutListParams struct {
 	LateCount int32
 }
 
-func (q *Queries) CreateCutList(ctx context.Context, arg CreateCutListParams) error {
-	_, err := q.db.ExecContext(ctx, createCutList,
+func (q *Queries) CreateCutList(ctx context.Context, arg CreateCutListParams) (sql.Result, error) {
+	return q.db.ExecContext(ctx, createCutList,
 		arg.ThisIsCut,
 		arg.UserID,
 		arg.Name,
@@ -59,17 +60,15 @@ func (q *Queries) CreateCutList(ctx context.Context, arg CreateCutListParams) er
 		arg.LateTime,
 		arg.LateCount,
 	)
-	return err
 }
 
-const createUser = `-- name: CreateUser :exec
+const createUser = `-- name: CreateUser :execresult
 INSERT INTO users (uuid)
 VALUES (?)
 `
 
-func (q *Queries) CreateUser(ctx context.Context, uuid string) error {
-	_, err := q.db.ExecContext(ctx, createUser, uuid)
-	return err
+func (q *Queries) CreateUser(ctx context.Context, uuid string) (sql.Result, error) {
+	return q.db.ExecContext(ctx, createUser, uuid)
 }
 
 const deleteCutHistory = `-- name: DeleteCutHistory :exec
@@ -277,6 +276,37 @@ func (q *Queries) GetUser(ctx context.Context, uuid string) (int64, error) {
 	var id int64
 	err := row.Scan(&id)
 	return id, err
+}
+
+const updateCutList = `-- name: UpdateCutList :exec
+UPDATE cutLists
+SET this_is_cut = ?, name = ?, color = ?,count = ?, ` + "`" + `limit` + "`" + ` = ?, late_time = ?, late_count = ?
+WHERE id = ?
+`
+
+type UpdateCutListParams struct {
+	ThisIsCut bool
+	Name      string
+	Color     string
+	Count     int32
+	Limit     int32
+	LateTime  int32
+	LateCount int32
+	ID        int64
+}
+
+func (q *Queries) UpdateCutList(ctx context.Context, arg UpdateCutListParams) error {
+	_, err := q.db.ExecContext(ctx, updateCutList,
+		arg.ThisIsCut,
+		arg.Name,
+		arg.Color,
+		arg.Count,
+		arg.Limit,
+		arg.LateTime,
+		arg.LateCount,
+		arg.ID,
+	)
+	return err
 }
 
 const updateCutListCount = `-- name: UpdateCutListCount :exec
