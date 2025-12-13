@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-const createCutHistory = `-- name: CreateCutHistory :exec
+const createCutHistory = `-- name: CreateCutHistory :execresult
 INSERT INTO cutHistory (this_is_cut, late_time, lists_id, lists_updated_at)
 VALUES (?, ?, ?, ?)
 `
@@ -23,14 +23,13 @@ type CreateCutHistoryParams struct {
 	ListsUpdatedAt time.Time
 }
 
-func (q *Queries) CreateCutHistory(ctx context.Context, arg CreateCutHistoryParams) error {
-	_, err := q.db.ExecContext(ctx, createCutHistory,
+func (q *Queries) CreateCutHistory(ctx context.Context, arg CreateCutHistoryParams) (sql.Result, error) {
+	return q.db.ExecContext(ctx, createCutHistory,
 		arg.ThisIsCut,
 		arg.LateTime,
 		arg.ListsID,
 		arg.ListsUpdatedAt,
 	)
-	return err
 }
 
 const createCutList = `-- name: CreateCutList :execresult

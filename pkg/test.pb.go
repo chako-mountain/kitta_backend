@@ -594,6 +594,50 @@ func (x *ResGetCutList) GetUpdatedAt() string {
 	return ""
 }
 
+type ResGetCutListList struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CutLists      []*ResGetCutList       `protobuf:"bytes,1,rep,name=cut_lists,json=cutLists,proto3" json:"cut_lists,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResGetCutListList) Reset() {
+	*x = ResGetCutListList{}
+	mi := &file_test_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResGetCutListList) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResGetCutListList) ProtoMessage() {}
+
+func (x *ResGetCutListList) ProtoReflect() protoreflect.Message {
+	mi := &file_test_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResGetCutListList.ProtoReflect.Descriptor instead.
+func (*ResGetCutListList) Descriptor() ([]byte, []int) {
+	return file_test_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ResGetCutListList) GetCutLists() []*ResGetCutList {
+	if x != nil {
+		return x.CutLists
+	}
+	return nil
+}
+
 type ReqGetCutHistory struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ListId        int64                  `protobuf:"varint,1,opt,name=list_id,json=listId,proto3" json:"list_id,omitempty"`
@@ -603,7 +647,7 @@ type ReqGetCutHistory struct {
 
 func (x *ReqGetCutHistory) Reset() {
 	*x = ReqGetCutHistory{}
-	mi := &file_test_proto_msgTypes[9]
+	mi := &file_test_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -615,7 +659,7 @@ func (x *ReqGetCutHistory) String() string {
 func (*ReqGetCutHistory) ProtoMessage() {}
 
 func (x *ReqGetCutHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[9]
+	mi := &file_test_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -628,7 +672,7 @@ func (x *ReqGetCutHistory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReqGetCutHistory.ProtoReflect.Descriptor instead.
 func (*ReqGetCutHistory) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{9}
+	return file_test_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ReqGetCutHistory) GetListId() int64 {
@@ -651,7 +695,7 @@ type ResGetCutHistory struct {
 
 func (x *ResGetCutHistory) Reset() {
 	*x = ResGetCutHistory{}
-	mi := &file_test_proto_msgTypes[10]
+	mi := &file_test_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -663,7 +707,7 @@ func (x *ResGetCutHistory) String() string {
 func (*ResGetCutHistory) ProtoMessage() {}
 
 func (x *ResGetCutHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[10]
+	mi := &file_test_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -676,7 +720,7 @@ func (x *ResGetCutHistory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResGetCutHistory.ProtoReflect.Descriptor instead.
 func (*ResGetCutHistory) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{10}
+	return file_test_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ResGetCutHistory) GetId() int64 {
@@ -723,7 +767,7 @@ type ReqGetEventList struct {
 
 func (x *ReqGetEventList) Reset() {
 	*x = ReqGetEventList{}
-	mi := &file_test_proto_msgTypes[11]
+	mi := &file_test_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -735,7 +779,7 @@ func (x *ReqGetEventList) String() string {
 func (*ReqGetEventList) ProtoMessage() {}
 
 func (x *ReqGetEventList) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[11]
+	mi := &file_test_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -748,7 +792,7 @@ func (x *ReqGetEventList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReqGetEventList.ProtoReflect.Descriptor instead.
 func (*ReqGetEventList) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{11}
+	return file_test_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ReqGetEventList) GetUserId() int64 {
@@ -773,7 +817,7 @@ type ResGetEventList struct {
 
 func (x *ResGetEventList) Reset() {
 	*x = ResGetEventList{}
-	mi := &file_test_proto_msgTypes[12]
+	mi := &file_test_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -785,7 +829,7 @@ func (x *ResGetEventList) String() string {
 func (*ResGetEventList) ProtoMessage() {}
 
 func (x *ResGetEventList) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[12]
+	mi := &file_test_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -798,7 +842,7 @@ func (x *ResGetEventList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResGetEventList.ProtoReflect.Descriptor instead.
 func (*ResGetEventList) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{12}
+	return file_test_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ResGetEventList) GetId() int64 {
@@ -859,7 +903,7 @@ type ReqGetEventHistory struct {
 
 func (x *ReqGetEventHistory) Reset() {
 	*x = ReqGetEventHistory{}
-	mi := &file_test_proto_msgTypes[13]
+	mi := &file_test_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -871,7 +915,7 @@ func (x *ReqGetEventHistory) String() string {
 func (*ReqGetEventHistory) ProtoMessage() {}
 
 func (x *ReqGetEventHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[13]
+	mi := &file_test_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -884,7 +928,7 @@ func (x *ReqGetEventHistory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReqGetEventHistory.ProtoReflect.Descriptor instead.
 func (*ReqGetEventHistory) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{13}
+	return file_test_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ReqGetEventHistory) GetUserId() int64 {
@@ -904,7 +948,7 @@ type ResGetEventHistory struct {
 
 func (x *ResGetEventHistory) Reset() {
 	*x = ResGetEventHistory{}
-	mi := &file_test_proto_msgTypes[14]
+	mi := &file_test_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -916,7 +960,7 @@ func (x *ResGetEventHistory) String() string {
 func (*ResGetEventHistory) ProtoMessage() {}
 
 func (x *ResGetEventHistory) ProtoReflect() protoreflect.Message {
-	mi := &file_test_proto_msgTypes[14]
+	mi := &file_test_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -929,7 +973,7 @@ func (x *ResGetEventHistory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResGetEventHistory.ProtoReflect.Descriptor instead.
 func (*ResGetEventHistory) Descriptor() ([]byte, []int) {
-	return file_test_proto_rawDescGZIP(), []int{14}
+	return file_test_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ResGetEventHistory) GetId() int64 {
@@ -996,7 +1040,9 @@ const file_test_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\b \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\t \x01(\tR\tupdatedAt\",\n" +
+	"updated_at\x18\t \x01(\tR\tupdatedAt\"K\n" +
+	"\x12res_getCutListList\x125\n" +
+	"\tcut_lists\x18\x01 \x03(\v2\x18.tutorial.res_getCutListR\bcutLists\",\n" +
 	"\x11req_getCutHistory\x12\x17\n" +
 	"\alist_id\x18\x01 \x01(\x03R\x06listId\"\xa9\x01\n" +
 	"\x11res_getCutHistory\x12\x0e\n" +
@@ -1051,7 +1097,7 @@ func file_test_proto_rawDescGZIP() []byte {
 	return file_test_proto_rawDescData
 }
 
-var file_test_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_test_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_test_proto_goTypes = []any{
 	(*ReqcreateUser)(nil),      // 0: tutorial.reqcreateUser
 	(*RescreateUser)(nil),      // 1: tutorial.rescreateUser
@@ -1062,35 +1108,37 @@ var file_test_proto_goTypes = []any{
 	(*ResGetUserByUuid)(nil),   // 6: tutorial.res_getUserByUuid
 	(*ReqGetCutList)(nil),      // 7: tutorial.req_getCutList
 	(*ResGetCutList)(nil),      // 8: tutorial.res_getCutList
-	(*ReqGetCutHistory)(nil),   // 9: tutorial.req_getCutHistory
-	(*ResGetCutHistory)(nil),   // 10: tutorial.res_getCutHistory
-	(*ReqGetEventList)(nil),    // 11: tutorial.req_getEventList
-	(*ResGetEventList)(nil),    // 12: tutorial.res_getEventList
-	(*ReqGetEventHistory)(nil), // 13: tutorial.req_getEventHistory
-	(*ResGetEventHistory)(nil), // 14: tutorial.res_getEventHistory
+	(*ResGetCutListList)(nil),  // 9: tutorial.res_getCutListList
+	(*ReqGetCutHistory)(nil),   // 10: tutorial.req_getCutHistory
+	(*ResGetCutHistory)(nil),   // 11: tutorial.res_getCutHistory
+	(*ReqGetEventList)(nil),    // 12: tutorial.req_getEventList
+	(*ResGetEventList)(nil),    // 13: tutorial.res_getEventList
+	(*ReqGetEventHistory)(nil), // 14: tutorial.req_getEventHistory
+	(*ResGetEventHistory)(nil), // 15: tutorial.res_getEventHistory
 }
 var file_test_proto_depIdxs = []int32{
-	0,  // 0: tutorial.CutListService.CreateUser:input_type -> tutorial.reqcreateUser
-	5,  // 1: tutorial.CutListService.GetUserByUuid:input_type -> tutorial.req_getUserByUuid
-	7,  // 2: tutorial.CutListService.GetCutList:input_type -> tutorial.req_getCutList
-	9,  // 3: tutorial.CutListService.GetHistory:input_type -> tutorial.req_getCutHistory
-	2,  // 4: tutorial.CutListService.CreateCutList:input_type -> tutorial.ReqCreateCutList
-	5,  // 5: tutorial.EventListService.GetUserByUuid:input_type -> tutorial.req_getUserByUuid
-	11, // 6: tutorial.EventListService.GetEventList:input_type -> tutorial.req_getEventList
-	13, // 7: tutorial.EventListService.GetHistory:input_type -> tutorial.req_getEventHistory
-	1,  // 8: tutorial.CutListService.CreateUser:output_type -> tutorial.rescreateUser
-	6,  // 9: tutorial.CutListService.GetUserByUuid:output_type -> tutorial.res_getUserByUuid
-	8,  // 10: tutorial.CutListService.GetCutList:output_type -> tutorial.res_getCutList
-	10, // 11: tutorial.CutListService.GetHistory:output_type -> tutorial.res_getCutHistory
-	4,  // 12: tutorial.CutListService.CreateCutList:output_type -> tutorial.ResCreateCutList
-	6,  // 13: tutorial.EventListService.GetUserByUuid:output_type -> tutorial.res_getUserByUuid
-	12, // 14: tutorial.EventListService.GetEventList:output_type -> tutorial.res_getEventList
-	14, // 15: tutorial.EventListService.GetHistory:output_type -> tutorial.res_getEventHistory
-	8,  // [8:16] is the sub-list for method output_type
-	0,  // [0:8] is the sub-list for method input_type
-	0,  // [0:0] is the sub-list for extension type_name
-	0,  // [0:0] is the sub-list for extension extendee
-	0,  // [0:0] is the sub-list for field type_name
+	8,  // 0: tutorial.res_getCutListList.cut_lists:type_name -> tutorial.res_getCutList
+	0,  // 1: tutorial.CutListService.CreateUser:input_type -> tutorial.reqcreateUser
+	5,  // 2: tutorial.CutListService.GetUserByUuid:input_type -> tutorial.req_getUserByUuid
+	7,  // 3: tutorial.CutListService.GetCutList:input_type -> tutorial.req_getCutList
+	10, // 4: tutorial.CutListService.GetHistory:input_type -> tutorial.req_getCutHistory
+	2,  // 5: tutorial.CutListService.CreateCutList:input_type -> tutorial.ReqCreateCutList
+	5,  // 6: tutorial.EventListService.GetUserByUuid:input_type -> tutorial.req_getUserByUuid
+	12, // 7: tutorial.EventListService.GetEventList:input_type -> tutorial.req_getEventList
+	14, // 8: tutorial.EventListService.GetHistory:input_type -> tutorial.req_getEventHistory
+	1,  // 9: tutorial.CutListService.CreateUser:output_type -> tutorial.rescreateUser
+	6,  // 10: tutorial.CutListService.GetUserByUuid:output_type -> tutorial.res_getUserByUuid
+	8,  // 11: tutorial.CutListService.GetCutList:output_type -> tutorial.res_getCutList
+	11, // 12: tutorial.CutListService.GetHistory:output_type -> tutorial.res_getCutHistory
+	4,  // 13: tutorial.CutListService.CreateCutList:output_type -> tutorial.ResCreateCutList
+	6,  // 14: tutorial.EventListService.GetUserByUuid:output_type -> tutorial.res_getUserByUuid
+	13, // 15: tutorial.EventListService.GetEventList:output_type -> tutorial.res_getEventList
+	15, // 16: tutorial.EventListService.GetHistory:output_type -> tutorial.res_getEventHistory
+	9,  // [9:17] is the sub-list for method output_type
+	1,  // [1:9] is the sub-list for method input_type
+	1,  // [1:1] is the sub-list for extension type_name
+	1,  // [1:1] is the sub-list for extension extendee
+	0,  // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_test_proto_init() }
@@ -1104,7 +1152,7 @@ func file_test_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_test_proto_rawDesc), len(file_test_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   2,
 		},

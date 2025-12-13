@@ -12,7 +12,7 @@ UPDATE cutLists
 SET this_is_cut = ?, name = ?, color = ?,count = ?, `limit` = ?, late_time = ?, late_count = ?
 WHERE id = ?;
 
--- name: CreateCutHistory :exec
+-- name: CreateCutHistory :execresult
 INSERT INTO cutHistory (this_is_cut, late_time, lists_id, lists_updated_at)
 VALUES (?, ?, ?, ?);
 

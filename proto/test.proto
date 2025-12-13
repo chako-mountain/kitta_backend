@@ -62,6 +62,10 @@ message res_getCutList {
     string updated_at = 9;
 }
 
+message res_getCutListList {
+    repeated res_getCutList cut_lists = 1;
+}
+
 message req_getCutHistory {
     int64 list_id = 1;
 }
